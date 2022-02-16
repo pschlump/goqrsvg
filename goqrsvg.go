@@ -56,6 +56,29 @@ func (qs *QrSVG) WriteQrSVG(s *svg.SVG) error {
 	return errors.New("can not write to SVG: Not a valid QR code")
 }
 
+// WriteQrSVG writes the QR Code to SVG.
+func (qs *QrSVG) WriteQrSVGInverse(s *svg.SVG) error {
+	if qs.qr.Metadata().CodeKind == "QR Code" {
+		currY := qs.startingY
+
+		for x := 0; x < qs.qrWidth; x++ {
+			currX := qs.startingX
+			for y := 0; y < qs.qrWidth; y++ {
+				if qs.qr.At(x, y) == color.Black {
+					s.Rect(currX, currY, qs.blockSize, qs.blockSize, "fill:white;stroke:none")
+				} else if qs.qr.At(x, y) == color.White {
+					s.Rect(currX, currY, qs.blockSize, qs.blockSize, "fill:black;stroke:none")
+				}
+				currX += qs.blockSize
+			}
+			currY += qs.blockSize
+		}
+
+		return nil
+	}
+	return errors.New("can not write to SVG: Not a valid QR code")
+}
+
 // SetStartPoint sets the top left start point of QR Code.
 // This takes an X and Y value and then adds four white "blocks"
 // to create the "quiet zone" around the QR Code.
