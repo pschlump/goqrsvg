@@ -1,4 +1,4 @@
-module github.com/pschlump/goqrcode/note/goqrsvg
+module github.com/pschlump/goqrsvg
 
 go 1.17
 

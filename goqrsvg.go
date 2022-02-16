@@ -1,11 +1,12 @@
-// Package goqrsvg is an API that makes QR Code to SVG conversions.
 package goqrsvg
+
+// Package goqrsvg is an API that makes QR Code to SVG conversions.
 
 import (
 	"errors"
 	"image/color"
 
-	"github.com/ajstarks/svgo"
+	svg "github.com/ajstarks/svgo"
 	"github.com/boombuler/barcode"
 )
 
@@ -49,9 +50,10 @@ func (qs *QrSVG) WriteQrSVG(s *svg.SVG) error {
 			}
 			currY += qs.blockSize
 		}
+
 		return nil
 	}
-	return errors.New("can not write to SVG: Not a QR code")
+	return errors.New("can not write to SVG: Not a valid QR code")
 }
 
 // SetStartPoint sets the top left start point of QR Code.

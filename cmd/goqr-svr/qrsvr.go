@@ -1,25 +1,3 @@
-# goqrsvg
-
-goqrsvg is an API that makes QR Code to SVG conversions.
-
-A sample server can be found in ./cmd/goqr-svr.
-
-A sample main program (command line interface) can be fond in ./cmd/goqr-cli.
-
-## To use:
-
-`import "github.com/pschlump/goqrsvg"`
-
-## Uses:
-
-```
-"github.com/ajstarks/svgo"
-"github.com/boombuler/barcode/qr"
-```
-
-## Example Usage:
-
-```
 package main
 
 import (
@@ -85,8 +63,3 @@ func genqr(www http.ResponseWriter, req *http.Request) {
 
 	s.End()
 }
-```
-
-## Documentation:
-
-See [GoDoc](https://godoc.org/github.com/pschlump/goqrsvg)
